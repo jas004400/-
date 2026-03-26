@@ -1,0 +1,1618 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8f9fb;
+  color: #333;
+  overflow-x: hidden;
+}
+
+.main-content {
+  min-height: 100vh;
+}
+
+.app-container {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  min-height: 100vh;
+  height: 100%;
+  gap: 0;
+  zoom: 0.9; /* 用zoom縮放避免 transform 造成視窗高度問題 */
+  transform: none;
+  width: 100%;
+}
+
+.sidebar, .main-content {
+  letter-spacing: 0.02em;
+}
+
+
+
+.page-content, .cat-profile-container, .disease-container, .feeding-container, .encyclopedia-container, .converter-container, .breed-finder-container {
+  width: 100%;
+  min-height: calc(100vh - 120px); /* 包括上方 space，讓主要區塊不留底部空白 */
+}
+
+h2, h3, h4 {
+  line-height: 1.3;
+}
+
+button, input, select {
+  font-family: inherit;
+}
+
+/* 側邊欄樣式 */
+.sidebar {
+  background-color: #f5f5f5;
+  border-right: 2px solid #ddd;
+  padding: 20px 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  overflow-y: auto;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  padding: 15px 20px;
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-list li {
+  margin: 0;
+  padding: 0;
+}
+
+.menu-link {
+  display: block;
+  padding: 12px 25px;
+  color: #333;
+  text-decoration: none;
+  border-left: 4px solid transparent;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  line-height: 1.5;
+  position: relative;
+}
+
+.menu-link:hover {
+  background-color: #e8e8e8;
+  border-left-color: #ff6b6b;
+  padding-left: 30px;
+}
+
+.menu-link.active {
+  background-color: #fff3cd;
+  border-left-color: #ffc107;
+  font-weight: 600;
+  color: #000;
+}
+
+/* 主內容區樣式 */
+.main-content {
+  grid-column: 2;
+  padding: 40px;
+  background-color: #ffffff;
+  overflow-y: auto;
+  min-height: calc(100vh - 80px); /* 扣掉上下 padding，避免超出一個額外空白 */
+}
+
+.page-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-content h2 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 20px;
+  border-bottom: 3px solid #ffc107;
+  padding-bottom: 10px;
+}
+
+.page-content p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* 轉換器容器樣式 */
+.converter-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.converter-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+.converter-card h2 {
+  font-size: 26px;
+  margin-bottom: 10px;
+  border: none;
+  color: white;
+  text-align: center;
+}
+
+.converter-description {
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 30px;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+.converter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group label {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.age-input {
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.age-input:focus {
+  outline: none;
+  background-color: white;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.age-input::placeholder {
+  color: #999;
+}
+
+.calculate-btn {
+  padding: 14px 28px;
+  background-color: rgba(255, 255, 255, 0.25);
+  color: white;
+  border: 2px solid white;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.calculate-btn:hover {
+  background-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.calculate-btn:active {
+  transform: translateY(0);
+}
+
+.result-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  border-left: 4px solid rgba(255, 255, 255, 0.5);
+}
+
+.result-group label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+}
+
+.result-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-value {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+}
+
+.error-message {
+  font-size: 14px;
+  color: #ffeb3b;
+  margin: 0;
+  text-align: center;
+}
+
+.main-content button {
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #ffc107;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.main-content button:hover {
+  background-color: #ffb300;
+}
+
+.read-the-docs {
+  color: #FF8c;
+}
+
+/* 貓咪百科全書樣式 */
+.encyclopedia-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 0;
+}
+
+.encyclopedia-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.encyclopedia-header h2 {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 10px;
+  border-bottom: 3px solid #ff6b6b;
+  padding-bottom: 15px;
+  display: inline-block;
+  min-width: 300px;
+}
+
+.encyclopedia-subtitle {
+  font-size: 16px;
+  color: #666;
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.encyclopedia-search {
+  position: relative;
+  max-width: 500px;
+  margin: 0 auto 30px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 14px 45px 14px 18px;
+  font-size: 16px;
+  border: 2px solid #ff6b6b;
+  border-radius: 50px;
+  background-color: #fff;
+  color: #333;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.1);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #ff5252;
+  box-shadow: 0 6px 16px rgba(255, 107, 107, 0.2);
+}
+
+.search-input::placeholder {
+  color: #999;
+}
+
+.search-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  pointer-events: none;
+}
+
+.search-results-info {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #666;
+  font-size: 14px;
+}
+
+.encyclopedia-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.knowledge-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  padding: 24px;
+  color: white;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.knowledge-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+.knowledge-card h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 10px;
+}
+
+.knowledge-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0.95;
+  text-align: justify;
+}
+
+.translate-btn {
+  margin-top: 12px;
+  padding: 8px 16px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.translate-btn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.translate-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  color: #666;
+}
+
+.no-results p {
+  font-size: 18px;
+  margin: 0;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .encyclopedia-header h2 {
+    font-size: 28px;
+    min-width: auto;
+  }
+
+  .encyclopedia-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 768px) {
+  .app-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  .main-content {
+    grid-column: 1;
+    padding: 20px;
+  }
+}
+
+/* 我的貓咪頁面樣式 */
+.cat-profile-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px 0;
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.profile-header h2 {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 10px;
+  border-bottom: 3px solid #4CAF50;
+  padding-bottom: 15px;
+  display: inline-block;
+  min-width: 200px;
+}
+
+.profile-subtitle {
+  font-size: 16px;
+  color: #666;
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.profile-section {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e0e0e0;
+}
+
+.profile-section h3 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #4CAF50;
+  display: inline-block;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* 日期輸入特殊樣式 */
+.date-inputs-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px;
+  align-items: end;
+}
+
+.date-inputs-row .form-group {
+  margin-bottom: 0;
+}
+
+.date-inputs-row .form-group label {
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight:700;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-input, .form-select {
+  padding: 10px 3px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: #fff;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus, .form-select:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.form-input::placeholder {
+  color: #999;
+}
+
+.disease-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px 0;
+}
+
+.disease-container h2 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 10px;
+  border-bottom: 3px solid #e91e63;
+  padding-bottom: 12px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.disease-records-section,
+.disease-form-section {
+  background: white;
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  border: 1px solid #e0e0e0;
+  margin-bottom: 18px;
+}
+
+.disease-table {
+  border-top: 1px solid #ddd;
+}
+
+.table-header,
+.table-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr 0.6fr;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+}
+
+.table-header {
+  font-weight: 700;
+  color: #444;
+  background: #fafafa;
+  border-bottom: 1px solid #eee;
+}
+
+.table-row {
+  border-bottom: 1px solid #eee;
+}
+
+.disease-row span {
+  font-size: 14px;
+}
+
+.form-buttons {
+  grid-column: span 6;
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 5px;
+}
+
+.add-record-btn,
+.delete-btn {
+  padding: 8px 14px;
+  background-color: #e91e63;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background-color: #f44336;
+}
+
+.add-record-btn:hover,
+.delete-btn:hover {
+  opacity: 0.9;
+}
+
+.disease-form-section .form-grid {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 2fr));
+  gap: 14px;
+}
+
+.feeding-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px 0;
+}
+
+.feeding-container h2 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 10px;
+  border-bottom: 3px solid #2196f3;
+  padding-bottom: 12px;
+}
+
+.feeding-records,
+.feeding-form {
+  background: white;
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  border: 1px solid #e0e0e0;
+  margin-bottom: 18px;
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.feeding-table {
+  min-width: 720px;
+  border-top: 1px solid #ddd;
+}
+
+.feeding-table .table-header,
+.feeding-table .table-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr 1fr 1fr 0.8fr;
+  align-items: center;
+  padding: 10px;
+  gap: 6px;
+}
+
+.feeding-table .table-header {
+  font-weight: 700;
+  color: #444;
+  background: #fafafa;
+  border-bottom: 1px solid #eee;
+}
+
+.feeding-table .table-row {
+  border-bottom: 1px solid #eee;
+}
+
+.feeding-form .form-grid {
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  gap: 14px;
+}
+
+.feeding-form .form-group label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.form-buttons {
+  grid-column: span 8;
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 5px;
+}
+
+.add-record-btn, .delete-btn {
+  padding: 8px 14px;
+  background-color: #2196f3;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background-color: #f44336;
+}
+
+.add-record-btn:hover, .delete-btn:hover {
+  opacity: 0.9;
+}
+
+/* 照片上傳樣式 */
+.photo-upload {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.photo-preview {
+  flex-shrink: 0;
+}
+
+.cat-photo {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 3px solid #4CAF50;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.photo-placeholder {
+  width: 200px;
+  height: 200px;
+  border: 3px dashed #ccc;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9f9;
+  color: #666;
+  font-size: 48px;
+}
+
+.photo-placeholder p {
+  margin: 10px 0 0 0;
+  font-size: 14px;
+}
+
+.upload-controls {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.file-input {
+  display: none;
+}
+
+.upload-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.upload-btn:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.upload-hint {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+/* 體重記錄樣式 */
+.weight-records {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.add-weight-form {
+  background-color: #f8f9fa;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.weight-input-row {
+  display: grid;
+  grid-template-columns: 1fr 3fr auto;
+  gap: 15px;
+  align-items: end;
+}
+
+.weight-input-row .date-inputs-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.weight-input-row .date-inputs-row .form-group {
+  margin-bottom: 0;
+}
+
+.weight-input-row .date-inputs-row .form-group label {
+  font-size: 12px;
+  margin-bottom: 3px;
+}
+
+.add-weight-btn {
+  padding: 12px 20px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-weight-btn:hover {
+  background-color: #1976D2;
+  transform: translateY(-2px);
+}
+
+.weight-history h4 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #2196F3;
+}
+
+.weight-table {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 15px;
+  padding: 15px 20px;
+  background-color: #2196F3;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.table-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 15px;
+  padding: 12px 20px;
+  border-bottom: 1px solid #e0e0e0;
+  align-items: center;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-row:hover {
+  background-color: #f8f9fa;
+}
+
+.delete-btn {
+  padding: 6px 12px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f;
+  transform: scale(1.05);
+}
+
+.no-records {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666;
+  font-style: italic;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .photo-upload {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .table-header,
+  .table-row {
+    grid-template-columns: 1fr;
+    gap: 5px;
+    text-align: center;
+  }
+
+  .profile-section {
+    padding: 20px;
+  }
+}
+
+/* 儲存的貓咪列表樣式 */
+.saved-cats-section {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e0e0e0;
+  margin-bottom: 30px;
+}
+
+.saved-cats-section h3 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #FF9800;
+  display: inline-block;
+}
+
+.saved-cats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.saved-cat-card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.saved-cat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.cat-card-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.cat-thumbnail {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #FF9800;
+}
+
+.cat-card-header h4 {
+  font-size: 18px;
+  color: #333;
+  margin: 0;
+}
+
+.cat-card-info p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.cat-card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.load-btn, .profile-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.load-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.load-btn:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+.profile-btn {
+  background-color: #2196F3;
+  color: white;
+}
+
+.profile-btn:hover {
+  background-color: #1976D2;
+  transform: translateY(-2px);
+}
+
+/* 貓咪個人檔案顯示樣式 */
+.cat-profile-display {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+  color: white;
+}
+
+.cat-profile-display h3 {
+  font-size: 28px;
+  color: white;
+  margin-bottom: 25px;
+  text-align: center;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 10px;
+}
+
+.profile-display-content {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.profile-photo {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 3px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.profile-photo-placeholder {
+  width: 100%;
+  height: 250px;
+  border: 3px dashed rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  font-size: 48px;
+}
+
+.profile-info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.info-item {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.info-item strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.weight-history-section h4 {
+  font-size: 20px;
+  color: white;
+  margin-bottom: 15px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  padding-bottom: 5px;
+}
+
+.weight-records-display {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.weight-record-item {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 14px;
+}
+
+.close-profile-btn {
+  display: block;
+  margin: 30px auto 0;
+  padding: 12px 24px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close-profile-btn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* 儲存按鈕樣式 */
+.save-section {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.save-cat-btn {
+  padding: 15px 30px;
+  background-color: #FF9800;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+}
+
+.save-cat-btn:hover {
+  background-color: #F57C00;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4);
+}
+
+.save-hint {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
+}
+
+/* 額外的響應式設計 */
+@media (max-width: 768px) {
+  .saved-cats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-display-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .date-inputs-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .weight-input-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .weight-input-row .date-inputs-row {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px;
+  }
+}
+
+/* 寵物品種搜尋器樣式 */
+.breed-finder-container {
+  padding: 40px 30px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+}
+
+.breed-finder-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.breed-finder-header h2 {
+  font-size: 36px;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.breed-finder-subtitle {
+  font-size: 16px;
+  color: #555;
+  margin: 0;
+}
+
+.breed-finder-search {
+  max-width: 600px;
+  margin: 0 auto 30px;
+  position: relative;
+}
+
+.breed-finder-search .search-input {
+  width: 100%;
+  padding: 15px 45px 15px 20px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  background-color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.breed-finder-search .search-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+}
+
+.breed-finder-search .search-input:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.breed-finder-search .search-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #999;
+}
+
+/* 加載狀態 */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-container p {
+  color: #555;
+  font-size: 16px;
+  margin: 0;
+}
+
+/* 錯誤訊息 */
+.error-message-box {
+  background: #ffebee;
+  border: 2px solid #f44336;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  color: #c62828;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.error-message-box p {
+  margin: 0;
+  font-weight: 500;
+}
+
+.search-results-info {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 16px;
+  color: #555;
+  font-weight: 500;
+}
+
+.breed-finder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.breed-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e8e8e8;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.breed-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 35px rgba(0, 0, 0, 0.15);
+  border-color: #667eea;
+}
+
+/* 品種卡片圖片 */
+.breed-card-image {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.breed-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.breed-card:hover .breed-card-image img {
+  transform: scale(1.05);
+}
+
+.breed-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 2px solid #f0f0f0;
+  gap: 10px;
+}
+
+.breed-card-header h3 {
+  font-size: 22px;
+  color: #2c3e50;
+  margin: 0;
+  flex: 1;
+}
+
+.breed-category {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.breed-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+}
+
+.breed-description {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.translate-btn {
+  margin-top: 8px;
+  padding: 6px 12px;
+  background-color: rgba(102, 126, 234, 0.1);
+  color: #667eea;
+  border: 1px solid #667eea;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: flex-start;
+}
+
+.translate-btn:hover {
+  background-color: #667eea;
+  color: white;
+}
+
+.translate-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: #e0e0e0;
+  color: #999;
+}
+
+.breed-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.detail-item {
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.detail-item strong {
+  color: #2c3e50;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+
+.detail-item p {
+  color: #555;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.detail-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.detail-row .detail-item {
+  margin: 0;
+}
+
+/* 性格評分 */
+.personality-scores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.score-item {
+  text-align: center;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.score-item span {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.score-item div {
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+  background: white;
+  border-radius: 12px;
+  border: 2px dashed #ddd;
+  font-size: 18px;
+}
+
+.no-results p {
+  margin: 0;
+}
+
+/* 寵物品種搜尋器響應式設計 */
+@media (max-width: 1024px) {
+  .breed-finder-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .breed-finder-container {
+    padding: 20px 15px;
+  }
+
+  .breed-finder-header h2 {
+    font-size: 28px;
+  }
+
+  .breed-finder-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .breed-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .breed-category {
+    align-self: flex-start;
+  }
+
+  .breed-card-image {
+    height: 200px;
+  }
+
+  .detail-row {
+    grid-template-columns: 1fr;
+  }
+
+  .personality-scores {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

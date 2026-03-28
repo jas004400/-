@@ -16,5 +16,5 @@
 2. **組件化開發**：將搜尋列、寵物卡片與表單拆分為獨立組件，提高程式碼的重用性與可維護性。
 
 ### 📸 專案預覽
-![alt text](image.png)
-- **Demo Link**: [點擊查看線上版https://pawcare-kappa.vercel.app/#breed-finder]
+<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/9447bd35-b231-42d2-a091-8746d0b4815c" />
+- **Demo Link**: [[點擊查看線上版](https://pawcare-kappa.vercel.app/)]

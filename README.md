@@ -17,4 +17,4 @@
 
 ### 📸 專案預覽
 <img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/9447bd35-b231-42d2-a091-8746d0b4815c" />
-- **Demo Link**: [[點擊查看線上版](https://pawcare-kappa.vercel.app/)]
+- **Demo Link**: [點擊查看線上版](https://pawcare-kappa.vercel.app/)
